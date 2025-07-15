@@ -1,0 +1,85 @@
+.reception-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  .add-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    float: left;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+
+    th, td {
+      padding: 14px 20px;
+      text-align: center;
+    }
+
+    thead {
+      background-color: #f0f0f0;
+      color: #333;
+      font-weight: bold;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #ddd;
+
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+
+    .edit {
+      background-color: #ffc107;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 5px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #e0a800;
+      }
+    }
+
+    .delete {
+      background-color: #dc3545;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #b52a37;
+      }
+    }
+  }
+}

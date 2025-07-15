@@ -1,0 +1,15 @@
+
+<div class="register-container">
+  <h2>הרשמה לאתר</h2>
+  <form (ngSubmit)="onRegister()">
+    <input type="text" placeholder="שם משתמש" [(ngModel)]="username" name="username" required />
+    <input type="password" placeholder="סיסמה" [(ngModel)]="password" name="password" required />
+    <select [(ngModel)]="role" name="role">
+      <option value="User">משתמש רגיל</option>
+      <option value="Manager">מנהל</option>
+      <option value="Receptionist">מזכירה</option>
+    </select>
+    <button type="submit">הירשם</button>
+  </form>
+  <a routerLink="/login">כבר יש לך משתמש? התחבר כאן</a>
+</div>

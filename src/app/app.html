@@ -1,0 +1,12 @@
+<div>
+<div>
+    <a routerLink="/login"> כניסה</a>
+    <a routerLink="/Register"> הרשמה</a>
+</div>
+<button (click)="but()">sss</button>
+<router-outlet></router-outlet>
+
+@for(item of list(); track item.id){
+    <div>{{item.id}}</div>
+}
+</div>

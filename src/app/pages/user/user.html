@@ -1,0 +1,24 @@
+<p>user works!</p>
+<div class="user-container">
+  <h2>הזמנת חדר</h2>
+
+  <form (ngSubmit)="searchRooms()">
+    <label>תאריך התחלה:</label>
+    <input type="date" [(ngModel)]="startDate" name="startDate" required />
+
+    <label>תאריך סיום:</label>
+    <input type="date" [(ngModel)]="endDate" name="endDate" required />
+
+    <button type="submit">חפש חדרים פנויים</button>
+  </form>
+
+  <div *ngIf="availableRooms.length > 0">
+    <h3>חדרים זמינים:</h3>
+    <ul>
+      <li *ngFor="let room of availableRooms">
+        חדר מספר {{ room.number }} - סוג: {{ room.type }}
+        <button (click)="reserveRoom(room.id)">הזמן</button>
+      </li>
+    </ul>
+  </div>
+</div>
