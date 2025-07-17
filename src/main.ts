@@ -1,7 +1,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { App } from './app/app';
- import 'zone.js';  
+import 'zone.js/dist/zone';
+import { provideHttpClient, withFetch } from '@angular/common/http'
 
  
 bootstrapApplication(App, appConfig)

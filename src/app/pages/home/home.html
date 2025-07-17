@@ -1,0 +1,19 @@
+
+<div class="home-container">
+
+  <div class="background-slider">
+    <img *ngFor="let img of images; let i = index" 
+         [src]="img" 
+         [class.active]="i === currentImageIndex" />
+  </div>
+
+  <div class="content-overlay">
+    <h1>ברוכים הבאים</h1>
+
+    <div class="buttons">
+      <button routerLink="/register" class="btn">הרשמה</button>
+      <button routerLink="/login" class="btn">כניסה</button>
+    </div>
+  </div>
+
+</div>

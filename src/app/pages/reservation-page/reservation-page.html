@@ -1,0 +1,39 @@
+
+<div class="reservation-form">
+  <h2>הזמנת חדר</h2>
+
+  <form (ngSubmit)="submitReservation()" #form="ngForm">
+    <label for="name">שם מלא:</label>
+    <input id="name" type="text" [(ngModel)]="reservation.customerName" name="name" required />
+
+    <label for="phone">טלפון:</label>
+    <input id="phone" type="text" [(ngModel)]="reservation.phone" name="phone" required />
+
+    <label for="startDate">תאריך התחלה:</label>
+    <input
+      id="startDate"
+      type="date"
+      [(ngModel)]="reservation.StartDate"
+      name="startDate"
+      required
+      (change)="onDateChange()"
+    />
+
+    <label for="endDate">תאריך סיום:</label>
+    <input
+      id="endDate"
+      type="date"
+      [(ngModel)]="reservation.EndDate"
+      name="endDate"
+      required
+      (change)="onDateChange()"
+    />
+
+    <!-- <label for="room">חדר:</label>
+    <select id="room" [(ngModel)]="reservation.RoomId" name="roomId" required>
+      <option *ngFor="let room of rooms" [value]="room.id">{{ room.name }}</option>
+    </select> -->
+
+    <button type="submit">הזמן</button>
+  </form>
+</div>

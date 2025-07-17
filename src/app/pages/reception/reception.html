@@ -1,12 +1,26 @@
-<p>reception works!</p>
 
-<div>
-    טופס כניסה
-</div>
 <div class="reception-container">
   <h1>ניהול חדרים</h1>
 
-  <button class="add-button">➕ הוספת חדר</button>
+  <button class="add-button" (click)="addRoom()">➕ הוספת חדר</button>
+
+  <!-- טופס עריכה -->
+  <div *ngIf="roomToEdit() as editingRoom" class="edit-form">
+    <h3>עריכת חדר {{ editingRoom.id }}</h3>
+    <label>
+      סוג חדר:
+      <input [(ngModel)]="editingRoom.type" />
+    </label>
+    <label>
+      סטטוס:
+      <select [(ngModel)]="editingRoom.status">
+        <option value="פנוי">פנוי</option>
+        <option value="תפוס">תפוס</option>
+      </select>
+    </label>
+    <button (click)="saveEdit()">שמור</button>
+    <button (click)="cancelEdit()">בטל</button>
+  </div>
 
   <table>
     <thead>
@@ -18,16 +32,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>101</td>
-        <td>סוויטה</td>
-        <td>פנוי</td>
-        <td>
-          <button class="edit">ערוך</button>
-          <button class="delete">מחק</button>
-        </td>
-      </tr>
-      <!-- שורות נוספות -->
+      @for (room of rooms(); track room.id) {
+        <tr>
+          <td>{{ room.id }}</td>
+          <td>{{ room.type }}</td>
+          <td>{{ room.status }}</td>
+          <td>
+            <button class="edit" (click)="startEditRoom(room)">ערוך</button>
+            <button class="delete" (click)="deleteRoom(room.id)">מחק</button>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>

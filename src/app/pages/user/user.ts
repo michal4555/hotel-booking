@@ -1,30 +1,53 @@
+
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';       
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RoomService, Room } from '../../services/room';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './user.html',
-  styleUrl: './user.scss'
+  styleUrls: ['./user.scss']
 })
 export class User {
-startDate: string = '';
-endDate: string = '';
-availableRooms: any[] = [];
+  startDate: string = '';
+  endDate: string = '';
+  customerName: string = '';
+  phone: string = '';
+  availableRooms: Room[] = [];
+  selectedRoomId: any;
 
-searchRooms() {
-  console.log('Searching for rooms between:', this.startDate, this.endDate);
-  // כאן תשלפי בעתיד נתונים מה-API
-  this.availableRooms = [
-    { id: 1, number: 101, type: 'רגיל' },
-    { id: 2, number: 202, type: 'סוויטה' }
-  ];
-}
+  constructor(private roomService: RoomService, private router: Router) {}
 
-reserveRoom(roomId: number) {
-  console.log('Reserving room:', roomId);
-  // שליחת בקשת הזמנה לשרת
-}
+  searchRooms() {
+    this.roomService.getAvailableRooms(this.startDate, this.endDate).subscribe({
+      next: (rooms: Room[]) => this.availableRooms = rooms,
+      error: (err: any) => {
+        console.error('שגיאה בשליפת חדרים:', err);
+        alert('שגיאה בשליפת חדרים זמינים');
+      }
+    });
+  }
 
+  reserveRoom(roomId: number) {
+    if (!this.startDate || !this.endDate) {
+      alert('יש לבחור טווח תאריכים לפני ביצוע הזמנה');
+      return;
+    }
+
+    const reservationRequest = {
+      roomId: roomId,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      customerName: this.customerName,
+      phone: this.phone
+    };
+
+    // ניווט לדף reservation-page עם הנתונים
+    this.router.navigate(['/reservation-page'], { state: { reservation: reservationRequest } });
+  }
 }
